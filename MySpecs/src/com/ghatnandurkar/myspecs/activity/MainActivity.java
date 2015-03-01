@@ -1,16 +1,41 @@
-package com.ghatnandurkar.myspecs;
+package com.ghatnandurkar.myspecs.activity;
+
+import com.ghatnandurkar.myspecs.R;
+import com.ghatnandurkar.myspecs.util.Utils;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
+
+
+	private TextView tvDeviceHeight;
+	private TextView tvDeviceWidth;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		innitialize();
+		setSpecs();
+
+
+	}
+
+	private void setSpecs() {
+		tvDeviceHeight.setText("Device Height= "+Utils.getDeviceHeight(this));
+		tvDeviceWidth.setText("Device Width= "+Utils.getDeviceWidth(this));
+
+	}
+
+	private void innitialize() {
+		tvDeviceHeight=(TextView) findViewById(R.id.deviceHeight);
+		tvDeviceWidth=(TextView) findViewById(R.id.deviceWidth);
+
 	}
 
 	@Override
