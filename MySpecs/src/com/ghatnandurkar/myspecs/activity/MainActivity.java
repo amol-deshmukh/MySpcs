@@ -1,15 +1,16 @@
 package com.ghatnandurkar.myspecs.activity;
 
-import com.ghatnandurkar.myspecs.R;
-import com.ghatnandurkar.myspecs.util.Utils;
-
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class MainActivity extends ActionBarActivity {
+import com.ghatnandurkar.myspecs.R;
+import com.ghatnandurkar.myspecs.utils.Utils;
+
+public class MainActivity extends Activity {
 
 
 	private TextView tvDeviceHeight;
@@ -21,14 +22,14 @@ public class MainActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_main);
 
 		innitialize();
-		setSpecs();
+		setSpecs(getApplicationContext());
 
 
 	}
 
-	private void setSpecs() {
-		tvDeviceHeight.setText("Device Height= "+Utils.getDeviceHeight(this));
-		tvDeviceWidth.setText("Device Width= "+Utils.getDeviceWidth(this));
+	private void setSpecs(Context context) {
+		tvDeviceHeight.setText("Device Height= "+Utils.getDeviceHeight(context)+" px");
+		tvDeviceWidth.setText("Device Width= "+Utils.getDeviceWidth(context)+" px");
 
 	}
 
