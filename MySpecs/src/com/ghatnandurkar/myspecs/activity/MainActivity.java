@@ -2,6 +2,9 @@ package com.ghatnandurkar.myspecs.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.BatteryManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,8 +26,26 @@ public class MainActivity extends Activity {
 
 		innitialize();
 		setSpecs(getApplicationContext());
+		
+		IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+		Intent batteryStatus = getApplicationContext().registerReceiver(null, ifilter);
+		
+		// How are we charging?
+		int chargePlug = batteryStatus.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
+		boolean usbCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
+		boolean acCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
 
+		
+		System.out.println("Charging mode: ");
+		System.out.println("USB CHARGE: "+usbCharge);
+		System.out.println("AC CHARGE: "+acCharge);
+		int level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+        int scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
 
+        float batteryPct = level / (float)scale;
+        System.out.println("Battery Level= "+batteryPct+" %");
+        
+        
 	}
 
 	private void setSpecs(Context context) {
