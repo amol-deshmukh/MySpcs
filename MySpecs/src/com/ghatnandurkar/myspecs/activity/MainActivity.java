@@ -26,8 +26,7 @@ public class MainActivity extends Activity {
 
 		innitialize();
 		setSpecs(getApplicationContext());
-		
-		IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+		IntentFilter ifilter = new IntentFilter(Intent.ACTION_POWER_CONNECTED);
 		Intent batteryStatus = getApplicationContext().registerReceiver(null, ifilter);
 		
 		// How are we charging?
